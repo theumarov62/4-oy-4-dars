@@ -10,6 +10,10 @@ const elRules = document.getElementById("rulesModal");
 const elRulesModal = document.getElementById("rules");
 const elCloseModal = document.getElementById("closeRules");
 const elOverlay = document.getElementById("overlay");
+const elLevelUp = document.getElementById("levelUp");
+const elLevelUpAudio = document.getElementById("levelUpAudio");
+const elHahaAudio = document.getElementById("hahaAudio");
+
 export {
   elGameZone,
   elProcessZone,
@@ -23,4 +27,7 @@ export {
   elRulesModal,
   elCloseModal,
   elOverlay,
+  elLevelUp,
+  elLevelUpAudio,
+  elHahaAudio,
 };

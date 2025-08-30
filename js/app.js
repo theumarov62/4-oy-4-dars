@@ -2,7 +2,10 @@ import { aiChoose } from "./ai-choose.js";
 import {
   elAi,
   elCloseModal,
+  elHahaAudio,
   elHands,
+  elLevelUp,
+  elLevelUpAudio,
   elOverlay,
   elPlayer,
   elRefreshGame,
@@ -13,7 +16,7 @@ import {
 } from "./html-elements.js";
 import { refreshGame } from "./refresh-game.js";
 import { switchZone } from "./switch-zone.js";
-import { mode } from "./mode.js";
+import { mode, setMode } from "./mode.js";
 import { checkWinner } from "./check-winner.js";
 let score = 0;
 elHands.forEach((hand) => {
@@ -25,14 +28,16 @@ elHands.forEach((hand) => {
 
     setTimeout(() => {
       const ai = aiChoose(mode);
-      elAi.src = `./images/${ai}.svg`;
+      elAi.src = `/images/${ai}.svg`;
+      elAi.classList.add("w-[145px]", "h-[148px]");
+      elPlayer.classList.add("w-[145px]", "h-[148px]");
       const winner = checkWinner(ai, player);
       elStatus.innerText = winner;
 
-      if (winner === "You Win") {
+      if (winner === "Win") {
         score++;
         elScore.textContent = score;
-      } else if (winner === "AI win") {
+      } else if (winner === "Lose") {
         score--;
         elScore.textContent = score;
       } else if (winner === "Draw") {
@@ -52,4 +57,24 @@ elCloseModal.addEventListener("click", () => {
   elOverlay.style.filter = "none";
 });
 
+elLevelUp.addEventListener("click", (e) => {
+  elLevelUpAudio.play();
+  elLevelUpAudio.onended = () => {
+    window.location.href = "./pages/hard.html";
+  };
+});
+
+if (document.body.classList.contains("index")) {
+  setMode("easy");
+} else if (document.body.classList.contains("hard")) {
+  setMode("hard");
+}
 elRefreshGame.addEventListener("click", refreshGame);
+
+elLevelUp.addEventListener("click", (e) => {
+  e.preventDefault();
+  elHahaAudio.play();
+  elHahaAudio.onended = () => {
+    window.location.href = "../index.html";
+  };
+});
