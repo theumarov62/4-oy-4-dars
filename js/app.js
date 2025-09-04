@@ -2,10 +2,8 @@ import { aiChoose } from "./ai-choose.js";
 import {
   elAi,
   elCloseModal,
-  elHahaAudio,
   elHands,
   elLevelUp,
-  elLevelUpAudio,
   elOverlay,
   elPlayer,
   elRefreshGame,
@@ -37,7 +35,7 @@ elHands.forEach((hand) => {
       if (winner === "Win") {
         score++;
         elScore.textContent = score;
-      } else if (winner === "Lose") {
+      } else if (winner === "Lose" && score > 0) {
         score--;
         elScore.textContent = score;
       } else if (winner === "Draw") {
@@ -57,11 +55,8 @@ elCloseModal.addEventListener("click", () => {
   elOverlay.style.filter = "none";
 });
 
-elLevelUp.addEventListener("click", (e) => {
-  elLevelUpAudio.play();
-  elLevelUpAudio.onended = () => {
-    window.location.href = "./pages/hard.html";
-  };
+elLevelUp.addEventListener("click", () => {
+  window.location.href = "./pages/hard.html";
 });
 
 if (document.body.classList.contains("index")) {
@@ -70,11 +65,3 @@ if (document.body.classList.contains("index")) {
   setMode("hard");
 }
 elRefreshGame.addEventListener("click", refreshGame);
-
-elLevelUp.addEventListener("click", (e) => {
-  e.preventDefault();
-  elHahaAudio.play();
-  elHahaAudio.onended = () => {
-    window.location.href = "../index.html";
-  };
-});
