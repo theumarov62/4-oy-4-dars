@@ -11,6 +11,10 @@ const elRulesModal = document.getElementById("rules") || null;
 const elCloseModal = document.getElementById("closeRules") || null;
 const elOverlay = document.getElementById("overlay") || null;
 const elLevelUp = document.getElementById("levelUp") || null;
+const elPoint = document.getElementById("point");
+const elShop = document.getElementById("shop");
+const elShopModal = document.getElementById("shopModal");
+const elCloseShopModal = document.getElementById("closeShopModal");
 
 export {
   elGameZone,
@@ -26,4 +30,8 @@ export {
   elCloseModal,
   elOverlay,
   elLevelUp,
+  elPoint,
+  elShop,
+  elShopModal,
+  elCloseShopModal,
 };

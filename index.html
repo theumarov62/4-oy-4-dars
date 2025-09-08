@@ -15,8 +15,6 @@
   </head>
   <body class="index bg-gradient-to-b from-[#1F3757] to-[#131537] h-[105vh]">
     <main id="overlay">
-      <!-- audio -->
-
       <!-- Counter -->
       <section class="flex items-center justify-center pt-[48px] pb-[64px]">
         <div
@@ -41,6 +39,51 @@
             >
               0
             </p>
+          </div>
+          <div class="flex gap-[20px] items-center">
+            <p class="text-[white] text-[40px]">&dollar;</p>
+            <p
+              id="point"
+              class="text-[white] flex items-center justify-center text-[20px] bg-black w-[80px] h-[50px] rounded-[5px]"
+            >
+              0
+            </p>
+
+            <button
+              id="shop"
+              class="absolute right-[430px] top-[55px] cursor-pointer"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M3 3H21V5H3V3Z" fill="white" />
+                <path d="M5 5H19V21H5V5Z" fill="white" />
+              </svg>
+            </button>
+            <div
+              id="shopModal"
+              class="z-20 hidden absolute w-[500px] h-[400px] bg-[white] left-[550px] top-[200px] rounded-[3px]"
+            >
+              <svg
+                id="closeShopModal"
+                class="cursor-pointer absolute right-[14px] top-[14px]"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </div>
           </div>
           <a
             class="absolute text-white top-[55px] right-[150px] w-[200px] h-[50px] flex items-center justify-center rounded-[8px] bg-[transparent] border-[1px] border-[#F3F3F3] hover:opacity-[80%] transition duration-300"
