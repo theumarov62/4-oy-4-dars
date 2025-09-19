@@ -21,15 +21,13 @@ import { switchZone } from "./switch-zone.js";
 import { mode, setMode } from "./mode.js";
 import { checkWinner } from "./check-winner.js";
 
-// --- LocalStorage dan oldingi qiymatlarni olish ---
 let score = parseInt(localStorage.getItem("score")) || 0;
 let point = parseInt(localStorage.getItem("point")) || 0;
+const channel = new BroadcastChannel("channel-1");
 
-// HTML elementlarni boshlang‘ich qiymatlar bilan yangilash
 elScore.textContent = score;
 elPoint.textContent = point;
 
-// --- Foydalanuvchi qo‘li bilan o‘yin ---
 elHands.forEach((hand) => {
   hand.addEventListener("click", (evt) => {
     const player = evt.target.alt;
@@ -46,7 +44,6 @@ elHands.forEach((hand) => {
       const winner = checkWinner(ai, player);
       elStatus.innerText = winner;
 
-      // --- Score va point hisoblash ---
       if (winner === "Win") {
         score++;
         point += 10;
@@ -55,11 +52,9 @@ elHands.forEach((hand) => {
         point -= 5;
       }
 
-      // HTML ga chiqarish
       elScore.textContent = score;
       elPoint.textContent = point;
 
-      // --- LocalStorage ga saqlash ---
       localStorage.setItem("score", score);
       localStorage.setItem("point", point);
     }, 1000);
@@ -84,15 +79,25 @@ elCloseModal.addEventListener("click", () => {
   elOverlay.style.filter = "none";
 });
 
-elLevelUp.addEventListener("click", () => {
-  window.location.href = "./pages/hard.html";
-});
-
 if (document.body.classList.contains("index")) {
   setMode("easy");
 } else if (document.body.classList.contains("hard")) {
   setMode("hard");
 }
+
+elLevelUp.addEventListener("click", () => {
+  channel.postMessage("hard");
+  e.preventDefault();
+  location.href = "/pages/hard.html";
+});
+
+channel.addEventListener("message", (e) => {
+  if (e.data === "hard") {
+    location.href = "/pages/hard.html";
+  } else {
+    location.href = "../index.html";
+  }
+});
 
 elRefreshGame.addEventListener("click", () => {
   refreshGame();
